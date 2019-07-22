@@ -41,7 +41,13 @@ public class LoginTest {
     @Test
     public void happyPathTest(){
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
-        Assert.assertTrue(dashBoardPage.verifyUserButton());
+        Assert.assertTrue(dashBoardPage.verifyLogin());
+    }
+
+    @Test
+    public void failTest(){
+        loginPage.userLogin("admin", System.getenv("PASSWORD"));
+        Assert.assertFalse(dashBoardPage.verifyLogin());
     }
 
 

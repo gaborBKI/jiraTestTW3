@@ -1,5 +1,6 @@
 package com.codecool.jiratest.tw3;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,8 +14,12 @@ public class DashboardPage {
         util = new Util(driver);
     }
 
-    public boolean verifyUserButton(){
-        util.waitFor(userButton);
+    public boolean verifyLogin(){
+        try {
+            util.waitFor(userButton);
+        } catch (TimeoutException e){
+            return false;
+        }
         return userButton.isDisplayed();
     }
 
