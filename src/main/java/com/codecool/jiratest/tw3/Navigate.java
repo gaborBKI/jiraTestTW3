@@ -13,4 +13,8 @@ public class Navigate {
     public void toLoginPage(){
         driver.get("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
     }
+
+    public void toPage(String url){
+        driver.get(url);
+    }
 }
