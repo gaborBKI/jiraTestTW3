@@ -2,14 +2,13 @@ import com.codecool.jiratest.tw3.DashboardPage;
 import com.codecool.jiratest.tw3.LoginPage;
 import com.codecool.jiratest.tw3.Navigate;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LoginTest {
 
     private static WebDriver driver;
@@ -39,18 +38,24 @@ public class LoginTest {
     }
 
     @Test
+    @Order(1)
+    public void emptyFieldsTest(){
+        loginPage.userLogin("", "");
+        Assert.assertFalse(dashBoardPage.verifyLogin());
+    }
+
+    @Test
+    @Order(2)
+    public void invalidUserAndPassword(){
+        loginPage.userLogin("admin", "admin");
+        Assert.assertFalse(dashBoardPage.verifyLogin());
+    }
+
+    @Test
+    @Order(3)
     public void happyPathTest(){
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
-
-    @Test
-    public void failTest(){
-        loginPage.userLogin("admin", System.getenv("PASSWORD"));
-        Assert.assertFalse(dashBoardPage.verifyLogin());
-    }
-
-
-
 
 }
