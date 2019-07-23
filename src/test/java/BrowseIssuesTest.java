@@ -42,24 +42,8 @@ public class BrowseIssuesTest {
 
     @Order(2)
     @ParameterizedTest
-    @CsvFileSource(resources = "/coalaurl.csv", delimiter = '\n')
-    public void coalaProjectContainsThreeIssue(String url){
-        navigate.toPage(url);
-        Assert.assertNotNull(searchIssuesPage.verifyIssue());
-    }
-
-    @Order(3)
-    @ParameterizedTest
-    @CsvFileSource(resources = "/jetiurl.csv", delimiter = '\n')
-    public void jetiProjectContainsThreeIssue(String url){
-        navigate.toPage(url);
-        Assert.assertNotNull(searchIssuesPage.verifyIssue());
-    }
-
-    @Order(4)
-    @ParameterizedTest
-    @CsvFileSource(resources = "/toucanurl.csv", delimiter = '\n')
-    public void toucanProjectContainsThreeIssue(String url){
+    @CsvFileSource(resources = {"/coalaurl.csv", "/jetiurl.csv", "/toucanurl.csv"}, delimiter = '\n')
+    public void projectsContainThreeIssues(String url){
         navigate.toPage(url);
         Assert.assertNotNull(searchIssuesPage.verifyIssue());
     }
