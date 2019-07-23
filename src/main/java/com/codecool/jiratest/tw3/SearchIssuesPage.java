@@ -24,8 +24,13 @@ public class SearchIssuesPage {
         searchButton.click();
     }
 
-    public String verifyIssue(String searchText) {
+    public String verifyIssueText(String searchText) {
         util.waitFor(issueName, searchText);
         return issueName.getText();
+    }
+
+    public WebElement verifyIssue() {
+        util.waitFor(issueName);
+        return issueName;
     }
 }

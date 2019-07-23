@@ -1,11 +1,10 @@
 import com.codecool.jiratest.tw3.*;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BrowseIssuesTest {
@@ -38,6 +37,30 @@ public class BrowseIssuesTest {
             navigate.toPage("https://jira.codecool.codecanvas.hu/issues");
         }
         searchIssuesPage.searchIssue("none");
-        Assert.assertEquals("none", searchIssuesPage.verifyIssue("none"));
+        Assert.assertEquals("none", searchIssuesPage.verifyIssueText("none"));
+    }
+
+    @Order(2)
+    @ParameterizedTest
+    @CsvFileSource(resources = "/coalaurl.csv", delimiter = '\n')
+    public void coalaProjectContainsThreeIssue(String url){
+        navigate.toPage(url);
+        Assert.assertNotNull(searchIssuesPage.verifyIssue());
+    }
+
+    @Order(3)
+    @ParameterizedTest
+    @CsvFileSource(resources = "/jetiurl.csv", delimiter = '\n')
+    public void jetiProjectContainsThreeIssue(String url){
+        navigate.toPage(url);
+        Assert.assertNotNull(searchIssuesPage.verifyIssue());
+    }
+
+    @Order(4)
+    @ParameterizedTest
+    @CsvFileSource(resources = "/toucanurl.csv", delimiter = '\n')
+    public void toucanProjectContainsThreeIssue(String url){
+        navigate.toPage(url);
+        Assert.assertNotNull(searchIssuesPage.verifyIssue());
     }
 }
