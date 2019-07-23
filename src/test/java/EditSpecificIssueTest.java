@@ -17,8 +17,8 @@ public class EditSpecificIssueTest {
     private static DashboardPage dashBoardPage;
     private static EditIssueSpecificPage editIssueSpecificPage;
 
-    @BeforeAll
-    public static void init() {
+    @BeforeEach
+    public void init() {
         driver = BrowserFactory.loadPage(System.getenv("driverType"), "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
@@ -30,8 +30,8 @@ public class EditSpecificIssueTest {
         editIssueSpecificPage.waitForEditButton();
     }
 
-    @AfterAll
-    public static void tearDown() {
+    @AfterEach
+    public void tearDown() {
         driver.close();
     }
 
@@ -40,5 +40,11 @@ public class EditSpecificIssueTest {
         editIssueSpecificPage.deleteRequiredFields();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
         Assert.assertNotNull(editIssueSpecificPage.returnIssueType());
+    }
+
+    @Test
+    public void deleteIssueSummaryTest() {
+        editIssueSpecificPage.deleteIssueSummary();
+        Assert.assertNotNull(editIssueSpecificPage.returnError());
     }
 }

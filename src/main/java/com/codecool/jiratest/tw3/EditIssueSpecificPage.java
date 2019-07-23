@@ -10,6 +10,8 @@ public class EditIssueSpecificPage {
     @FindBy(id= "edit-issue") private WebElement editIssueButton;
     @FindBy(id= "edit-issue-dialog") private WebElement editIssueDialog;
     @FindBy(id= "summary") private WebElement summary;
+    @FindBy(id= "summary-val") private WebElement summaryValue;
+    @FindBy(css= "#summary") private WebElement cssSummary;
     @FindBy(id= "edit-issue-submit") private WebElement editIssueSubmit;
     @FindBy(id= "issuetype-field") private WebElement issueTypeField;
     @FindBy(className= "error") private WebElement errorClass;
@@ -52,5 +54,12 @@ public class EditIssueSpecificPage {
         waitForElement(errorClass);
         click(issueTypeField);
         clear(issueTypeField);
+    }
+
+    public void deleteIssueSummary() {
+        click(summaryValue);
+        waitForElement(cssSummary);
+        clear(cssSummary);
+        waitForElement(errorClass);
     }
 }
