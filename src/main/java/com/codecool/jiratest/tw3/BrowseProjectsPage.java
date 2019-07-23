@@ -11,13 +11,14 @@ public class BrowseProjectsPage {
     @FindBy(id = "browse_link") private WebElement projectsButton;
     @FindBy(id = "project_view_all_link_lnk") private WebElement viewAllProjectsButton;
     @FindBy(id = "projects") private WebElement projectList;
+    @FindBy(xpath = "//*[@id='header']/nav") private WebElement navBar;
 
     public BrowseProjectsPage(WebDriver driver) {
         util = new Util(driver);
     }
 
     public void getToProjectsFromDropdown(){
-        util.waitFor(projectsButton);
+        util.waitFor(navBar);
         projectsButton.click();
         util.waitFor(viewAllProjectsButton);
         viewAllProjectsButton.click();

@@ -17,4 +17,8 @@ public class Navigate {
     public void pressBackInBrowser(){
         driver.navigate().back();
     }
+
+    public String getCurrentURL(){
+        return driver.getCurrentUrl();
+    }
 }

@@ -1,5 +1,6 @@
 package com.codecool.jiratest.tw3;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,5 +23,9 @@ public class Util {
 
     public void waitFor(WebElement element, String text) {
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+    }
+
+    public WebElement findElementByText(String text){
+        return driver.findElement(By.linkText(text));
     }
 }
