@@ -37,6 +37,7 @@ public class EditIssueTest {
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 
+    /*
     @ParameterizedTest
     @CsvFileSource(resources = "/urlList.csv", numLinesToSkip = 1)
     public void editPageOpensTest(String url) {
@@ -45,11 +46,16 @@ public class EditIssueTest {
         Assert.assertTrue(objEditProjectPage.verifyEditButton());
     }
 
+     */
+
     @Test
     public void inlineEditing() {
-
+        navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
+        String newSummary = "Coala Task 3";
+        objEditProjectPage.editSummaryField(newSummary);
+        String modifiedSummary = objEditProjectPage.modifiedSummaryText();
+        Assert.assertEquals(newSummary, modifiedSummary);
     }
-
 
     @AfterAll
     public static void tearDown(){
