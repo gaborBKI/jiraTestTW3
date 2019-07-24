@@ -29,12 +29,24 @@ public class LoginTest {
     }
 
     @Test
+    @Order(1)
+    public void emptyFieldsTest(){
+        loginPage.userLogin("", "");
+        Assert.assertFalse(dashBoardPage.verifyLogin());
+    }
+
+    @Test
+    @Order(2)
+    public void invalidUserAndPassword(){
+        loginPage.userLogin("admin", "admin");
+        Assert.assertFalse(dashBoardPage.verifyLogin());
+    }
+
+    @Order(3)
+    @Test
     public void happyPathTest(){
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
-
-
-
 
 }
