@@ -28,7 +28,7 @@ public class Util {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitFor(WebElement element, String text, int waitTime) {
+    public void waitFor(WebElement element, String text) {
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
