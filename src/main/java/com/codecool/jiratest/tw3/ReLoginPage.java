@@ -18,7 +18,7 @@ public class ReLoginPage {
 
     public void reLogIn(String username, String pass){
         reLoginLink.click();
-        util.waitFor(userName);
+        util.waitFor(userName, 6);
         userName.sendKeys(username);
         password.sendKeys(pass);
         submitButton.click();

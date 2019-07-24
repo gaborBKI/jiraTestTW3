@@ -17,7 +17,7 @@ public class SearchIssuesPage {
     }
 
     public void searchIssue(String issue) {
-        util.waitFor(searchBox);
+        util.waitFor(searchBox, 6);
         searchBox.click();
         searchBox.clear();
         searchBox.sendKeys(issue);
@@ -25,12 +25,12 @@ public class SearchIssuesPage {
     }
 
     public String verifyIssueText(String searchText) {
-        util.waitFor(issueName, searchText);
+        util.waitFor(issueName, searchText, 6);
         return issueName.getText();
     }
 
     public WebElement verifyIssue() {
-        util.waitFor(issueName);
+        util.waitFor(issueName, 6);
         return issueName;
     }
 }

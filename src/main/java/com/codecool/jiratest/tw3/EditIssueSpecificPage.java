@@ -29,11 +29,11 @@ public class EditIssueSpecificPage {
     }
 
     public void waitForEditButton() {
-        util.waitFor(editIssueButton);
+        util.waitFor(editIssueButton, 6);
     }
 
     public void waitForElement(WebElement element) {
-        util.waitFor(element);
+        util.waitFor(element, 6);
     }
 
     public void click(WebElement element) {

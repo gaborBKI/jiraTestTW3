@@ -15,7 +15,7 @@ public class AllProjectsPage {
     }
 
     public void clickOnValidProject(String projectName){
-        util.waitFor(projectList);
+        util.waitFor(projectList, 6);
         util.findElementByText(projectName).click();
     }
 

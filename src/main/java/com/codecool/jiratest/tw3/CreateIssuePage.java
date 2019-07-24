@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.security.Key;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class CreateIssuePage {
     private Util util;
@@ -30,7 +28,7 @@ public class CreateIssuePage {
     }
 
     public void sendMessageToProjectBox(String message){
-        util.waitFor(projectBox);
+        util.waitFor(projectBox, 6);
         projectBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         projectBox.sendKeys(Keys.BACK_SPACE);
         projectBox.sendKeys(message );
@@ -60,7 +58,7 @@ public class CreateIssuePage {
 
     public boolean projectError(){
         try {
-            util.waitFor(projectErroMessage);
+            util.waitFor(projectErroMessage, 6);
         } catch (TimeoutException e){
             return false;
         }

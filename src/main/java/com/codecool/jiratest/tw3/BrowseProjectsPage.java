@@ -18,15 +18,15 @@ public class BrowseProjectsPage {
     }
 
     public void getToProjectsFromDropdown(){
-        util.waitFor(navBar);
+        util.waitFor(navBar, 6);
         projectsButton.click();
-        util.waitFor(viewAllProjectsButton);
+        util.waitFor(viewAllProjectsButton, 6);
         viewAllProjectsButton.click();
     }
 
     public boolean verifyProjectListAppears(){
         try {
-            util.waitFor(projectList);
+            util.waitFor(projectList, 6);
         } catch (TimeoutException e){
             return false;
         }

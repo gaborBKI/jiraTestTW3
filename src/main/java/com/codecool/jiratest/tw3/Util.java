@@ -23,12 +23,12 @@ public class Util {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
-    public void waitFor(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 4);
+    public void waitFor(WebElement element, int waitTime){
+        WebDriverWait wait = new WebDriverWait(driver, waitTime);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitFor(WebElement element, String text) {
+    public void waitFor(WebElement element, String text, int waitTime) {
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
