@@ -10,11 +10,15 @@ public class Navigate {
         this.driver = driver;
     }
 
-    public void toLoginPage(){
-        driver.get("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
-    }
-
     public void toPage(String url){
         driver.get(url);
+    }
+
+    public void pressBackInBrowser(){
+        driver.navigate().back();
+    }
+
+    public String getCurrentURL(){
+        return driver.getCurrentUrl();
     }
 }
