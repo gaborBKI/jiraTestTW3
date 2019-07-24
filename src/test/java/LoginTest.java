@@ -1,6 +1,7 @@
 import com.codecool.jiratest.tw3.BrowserFactory;
 import com.codecool.jiratest.tw3.DashboardPage;
 import com.codecool.jiratest.tw3.LoginPage;
+import com.codecool.jiratest.tw3.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginTest {
 
     private static WebDriver driver;
+    private static Navigate navigate;
     private static LoginPage loginPage;
     private static DashboardPage dashBoardPage;
 
@@ -18,6 +20,7 @@ public class LoginTest {
         driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
+        navigate = new Navigate(driver);
     }
 
     @AfterAll
@@ -39,8 +42,8 @@ public class LoginTest {
         Assert.assertFalse(dashBoardPage.verifyLogin());
     }
 
-    @Test
     @Order(3)
+    @Test
     public void happyPathTest(){
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
         Assert.assertTrue(dashBoardPage.verifyLogin());
