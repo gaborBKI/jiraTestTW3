@@ -13,4 +13,12 @@ public class Navigate {
     public void toPage(String url){
         driver.get(url);
     }
+
+    public void pressBackInBrowser(){
+        driver.navigate().back();
+    }
+
+    public String getCurrentURL(){
+        return driver.getCurrentUrl();
+    }
 }
