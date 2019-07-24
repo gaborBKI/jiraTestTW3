@@ -47,6 +47,11 @@ public class EditIssueTest {
         objEditProjectPage.editSummaryField(originalSummary);
     }
 
+    @Test
+    public void inlineEditingWithCreatingNewIssue() {
+
+    }
+
     @AfterAll
     public static void tearDown(){
         driver.close();
