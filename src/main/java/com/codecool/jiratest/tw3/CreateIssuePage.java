@@ -38,14 +38,14 @@ public class CreateIssuePage {
     }
 
     public void sendMessageToIssueBox(String message){
-        util.waitForClick(issueBox);
+        util.waitForElementClickable(issueBox);
         issueBox.click();
         issueBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         issueBox.sendKeys(Keys.BACK_SPACE);
     }
 
     public boolean FindValueInIssueValues(String value){
-        util.waitForClick(dropDownTrigger);
+        util.waitForElementClickable(dropDownTrigger);
         dropDownTrigger.click();
         for (WebElement issueTypeSuggestion : issueTypeSuggestions) {
             if(value.equals(issueTypeSuggestion.getText())) return true;
