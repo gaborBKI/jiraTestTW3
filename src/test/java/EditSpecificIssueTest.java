@@ -47,4 +47,16 @@ public class EditSpecificIssueTest {
         editIssueSpecificPage.deleteIssueSummary();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
     }
+
+    @Test
+    public void editDescriptionTest() {
+        editIssueSpecificPage.editDescription();
+        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
+    }
+
+    @Test
+    public void editIssueTypeTest() {
+        editIssueSpecificPage.editIssueType();
+        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
+    }
 }

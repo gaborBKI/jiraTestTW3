@@ -14,7 +14,14 @@ public class EditIssueSpecificPage {
     @FindBy(css= "#summary") private WebElement cssSummary;
     @FindBy(id= "edit-issue-submit") private WebElement editIssueSubmit;
     @FindBy(id= "issuetype-field") private WebElement issueTypeField;
+    @FindBy(id= "type-val") private WebElement issueTypeText;
+    @FindBy(xpath= "//*[@id=\"issuetype-field\"]") private WebElement issueTypeDropdown;
     @FindBy(className= "error") private WebElement errorClass;
+    @FindBy(xpath = "//*[@id=\"edit-issue-dialog\"]/div[2]/div[1]/div/form") private WebElement descriptionForm;
+    @FindBy(id= "aui-uid-1") private WebElement descriptionField;
+    @FindBy(id= "description-wiki-edit") private WebElement descriptionBox;
+    @FindBy(id= "description") private WebElement descriptionText;
+    @FindBy(id= "description-val") private WebElement descriptionValue;
 
 
     public EditIssueSpecificPage(WebDriver driver) {
@@ -37,12 +44,26 @@ public class EditIssueSpecificPage {
         element.clear();
     }
 
+    public void writeText(WebElement element, String text) {
+        element.sendKeys(text);
+    }
+
     public WebElement returnError() {
         return errorClass;
     }
 
     public WebElement returnIssueType() {
         return issueTypeField;
+    }
+
+    public WebElement returnDescriptionValue() {
+        return descriptionValue;
+    }
+
+    public WebElement returnIssueTypeText() { return issueTypeText; }
+
+    public String returnText(WebElement element) {
+        return element.getText();
     }
 
     public void deleteRequiredFields() {
@@ -61,5 +82,25 @@ public class EditIssueSpecificPage {
         waitForElement(cssSummary);
         clear(cssSummary);
         waitForElement(errorClass);
+    }
+
+    public void editDescription() {
+        click(editIssueButton);
+        waitForElement(descriptionForm);
+        waitForElement(descriptionField);
+        click(descriptionField);
+        click(descriptionBox);
+        clear(descriptionText);
+        writeText(descriptionText, "Test");
+        click(editIssueSubmit);
+    }
+
+    public void editIssueType() {
+        waitForElement(editIssueButton);
+        waitForElement(descriptionForm);
+        waitForElement(issueTypeField);
+        click(issueTypeDropdown);
+        writeText(issueTypeDropdown, "Task");
+        click(editIssueSubmit);
     }
 }
