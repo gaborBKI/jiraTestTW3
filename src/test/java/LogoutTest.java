@@ -1,26 +1,32 @@
-import com.codecool.jiratest.tw3.BrowserFactory;
-import com.codecool.jiratest.tw3.DashboardPage;
-import com.codecool.jiratest.tw3.LoginPage;
-import com.codecool.jiratest.tw3.Navigate;
+import com.codecool.jiratest.tw3.*;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class LoginTest {
+public class LogoutTest {
 
     private static WebDriver driver;
     private static Navigate navigate;
     private static LoginPage loginPage;
     private static DashboardPage dashBoardPage;
+    private static ReLoginPage reLoginPage;
 
     @BeforeAll
     public static void init(){
         driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
+        reLoginPage = PageFactory.initElements(driver, ReLoginPage.class);
         navigate = new Navigate(driver);
+    }
+
+    @BeforeEach
+    public void navigate(){
+        navigate.toPage("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+        loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+        dashBoardPage.logOut();
     }
 
     @AfterAll
@@ -28,24 +34,23 @@ public class LoginTest {
         driver.close();
     }
 
-    @Test
     @Order(1)
-    public void emptyFieldsTest(){
-        loginPage.userLogin("", "");
-        Assert.assertFalse(dashBoardPage.verifyLogin());
+    @Test
+    public void successfulLogoutTest(){
+        Assert.assertEquals("Log In", loginPage.verifyLoggedOutState());
     }
 
-    @Test
     @Order(2)
-    public void invalidUserAndPassword(){
-        loginPage.userLogin("admin", "admin");
-        Assert.assertFalse(dashBoardPage.verifyLogin());
+    @Test
+    public void backOnLogOutPageTest(){
+        navigate.pressBackInBrowser();
+        Assert.assertNotNull(dashBoardPage.getLogInContainer());
     }
 
     @Order(3)
     @Test
-    public void happyPathTest(){
-        loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+    public void reLogInTest(){
+        reLoginPage.reLogIn(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
 
