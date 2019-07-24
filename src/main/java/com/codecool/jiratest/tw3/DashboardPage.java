@@ -33,6 +33,9 @@ public class DashboardPage {
         createButton.click();
     }
 
+    public void waitForDashboard(){
+        util.waitFor(userButton);
+
     public void logOut(){
         util.waitFor(userButton);
         userButton.click();
