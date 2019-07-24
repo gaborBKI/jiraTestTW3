@@ -8,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 public class DashboardPage {
 
     private Util util;
+    @FindBy(id= "header-details-user-fullname") private WebElement userButton;
+    @FindBy( id = "create_link")
+    private WebElement createButton;
     @FindBy(id = "header-details-user-fullname") private WebElement userButton;
     @FindBy(id = "log_out") private WebElement logOutButton;
     @FindBy(id = "login-container") private WebElement logInContainer;
@@ -25,6 +28,10 @@ public class DashboardPage {
         return userButton.isDisplayed();
     }
 
+    public void clickToCreateIssue(){
+        util.waitFor(createButton);
+        createButton.click();
+    }
 
     public void waitForDashboard(){
         util.waitFor(userButton);
