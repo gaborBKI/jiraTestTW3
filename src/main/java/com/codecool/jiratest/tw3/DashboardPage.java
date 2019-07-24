@@ -25,6 +25,10 @@ public class DashboardPage {
         return userButton.isDisplayed();
     }
 
+
+    public void waitForDashboard(){
+        util.waitFor(userButton);
+
     public void logOut(){
         util.waitFor(userButton);
         userButton.click();
