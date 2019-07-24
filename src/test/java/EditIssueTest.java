@@ -50,7 +50,7 @@ public class EditIssueTest {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
         String newSummary = "Coala Task 3";
         objEditProjectPage.editSummaryField(newSummary);
-        String modifiedSummary = objEditProjectPage.modifiedSummaryText();
+        String modifiedSummary = objEditProjectPage.getSummaryText();
         Assert.assertEquals(newSummary, modifiedSummary);
     }
 

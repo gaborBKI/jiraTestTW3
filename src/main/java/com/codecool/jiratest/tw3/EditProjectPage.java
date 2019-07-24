@@ -1,6 +1,5 @@
 package com.codecool.jiratest.tw3;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,7 +43,7 @@ public class EditProjectPage {
         editableSummaryField.sendKeys(Keys.RETURN);
     }
 
-    public String modifiedSummaryText() {
+    public String getSummaryText() {
         util.waitForElementClickable(summaryHeader);
         summaryHeader.click();
         return summaryHeader.getText();
