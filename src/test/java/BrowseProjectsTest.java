@@ -7,6 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BrowseProjectsTest {
 
+    /* Environment variables used in this test:
+
+    JIRAUSER = username
+    PASSWROD = password
+    driverTYpe = can be firefox or chrome
+    ALL_PROJECTS_URL = https://jira.codecool.codecanvas.hu/secure/BrowseProjects.jspa?selectedCategory\=all&selectedProjectType\=all
+
+     */
+
     private static String projectToTest = "Main Testing Project";
     private static WebDriver driver;
     private static Navigate navigate;
@@ -29,17 +38,15 @@ public class BrowseProjectsTest {
         driver.close();
     }
 
-    @Order(1)
     @Test
     public void projectListAppearsTest() {
         browseProjectsPage.getToProjectsFromDropdown();
         Assert.assertTrue(browseProjectsPage.verifyProjectListAppears());
     }
 
-    @Order(2)
     @Test
     public void projectPageValidTest(){
-        navigate.toPage("https://jira.codecool.codecanvas.hu/secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all");
+        navigate.toPage(System.getenv("ALL_PROJECTS_URL"));
         allProjectsPage.clickOnValidProject(projectToTest);
         String expectedURL ="https://jira.codecool.codecanvas.hu/projects/MTP/issues";
         Assert.assertEquals(expectedURL, navigate.getCurrentURL());
