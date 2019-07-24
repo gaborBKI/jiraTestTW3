@@ -40,8 +40,7 @@ public class EditIssueTest {
     public void inlineEditing() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
         String originalSummary = objEditProjectPage.getSummaryText();
-        System.out.println(originalSummary);
-        String newSummary = "Coala Task 3";
+        String newSummary = originalSummary + " --- test ---";
         objEditProjectPage.editSummaryField(newSummary);
         String modifiedSummary = objEditProjectPage.getSummaryText();
         Assert.assertEquals(newSummary, modifiedSummary);
