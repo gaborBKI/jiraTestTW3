@@ -16,7 +16,7 @@ public class EditProjectPage {
     @FindBy(id="edit-issue-dialog")
     private WebElement editDialogBox;
 
-    @FindBy(xpath = "//*[@title=\"Click to edit\"]")
+    @FindBy(xpath = "//h1[@title='Click to edit']")
     private WebElement summaryHeader;
     @FindBy(id = "summary")
     private WebElement editableSummaryField;
@@ -45,7 +45,6 @@ public class EditProjectPage {
 
     public String getSummaryText() {
         util.waitForElementClickable(summaryHeader);
-        summaryHeader.click();
         return summaryHeader.getText();
     }
 }
