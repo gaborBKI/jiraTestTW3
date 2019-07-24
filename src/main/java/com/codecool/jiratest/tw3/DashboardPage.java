@@ -8,6 +8,8 @@ public class DashboardPage {
 
     private Util util;
     @FindBy(id= "header-details-user-fullname") private WebElement userButton;
+    @FindBy( id = "create_link")
+    private WebElement createButton;
 
     public DashboardPage(WebDriver driver) {
         util = new Util(driver);
@@ -16,6 +18,11 @@ public class DashboardPage {
     public boolean verifyUserButton(){
         util.waitFor(userButton);
         return userButton.isDisplayed();
+    }
+
+    public void clickToCreateIssue(){
+        util.waitFor(createButton);
+        createButton.click();
     }
 
 }
