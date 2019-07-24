@@ -49,5 +49,4 @@ public class EditProjectPage {
         summaryHeader.click();
         return summaryHeader.getText();
     }
-
 }

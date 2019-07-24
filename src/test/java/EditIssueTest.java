@@ -37,7 +37,6 @@ public class EditIssueTest {
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 
-    /*
     @ParameterizedTest
     @CsvFileSource(resources = "/urlList.csv", numLinesToSkip = 1)
     public void editPageOpensTest(String url) {
@@ -45,8 +44,6 @@ public class EditIssueTest {
         objEditProjectPage.clickEdit();
         Assert.assertTrue(objEditProjectPage.verifyEditButton());
     }
-
-     */
 
     @Test
     public void inlineEditing() {
