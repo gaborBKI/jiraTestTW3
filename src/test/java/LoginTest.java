@@ -5,8 +5,6 @@ import com.codecool.jiratest.tw3.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -23,7 +21,6 @@ public class LoginTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
         navigate = new Navigate(driver);
-        navigate.toLoginPage();
     }
 
     @AfterAll

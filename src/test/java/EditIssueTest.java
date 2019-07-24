@@ -1,3 +1,4 @@
+import com.codecool.jiratest.tw3.BrowserFactory;
 import com.codecool.jiratest.tw3.EditProjectPage;
 import com.codecool.jiratest.tw3.LoginPage;
 import com.codecool.jiratest.tw3.Navigate;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 
@@ -22,18 +21,10 @@ public class EditIssueTest {
 
     @BeforeAll
     public static void setUp(){
-        switch (System.getenv("driverType")){
-            case "Chrome":
-                driver = new ChromeDriver();
-                break;
-            case "Firefox":
-                driver = new FirefoxDriver();
-                break;
-        }
+        driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         objEditProjectPage = PageFactory.initElements(driver, EditProjectPage.class);
         navigate = new Navigate(driver);
-        navigate.toLoginPage();
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 
