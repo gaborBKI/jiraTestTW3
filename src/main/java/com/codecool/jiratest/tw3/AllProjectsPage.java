@@ -14,7 +14,7 @@ public class AllProjectsPage {
         util = new Util(driver);
     }
 
-    public void validateProjectIsOnPage(String projectName){
+    public void clickOnValidProject(String projectName){
         util.waitFor(projectList);
         util.findElementByText(projectName).click();
     }

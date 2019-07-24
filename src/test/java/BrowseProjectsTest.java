@@ -40,7 +40,7 @@ public class BrowseProjectsTest {
     @Test
     public void projectPageValidTest(){
         navigate.toPage("https://jira.codecool.codecanvas.hu/secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all");
-        allProjectsPage.validateProjectIsOnPage(projectToTest);
+        allProjectsPage.clickOnValidProject(projectToTest);
         String expectedURL ="https://jira.codecool.codecanvas.hu/projects/MTP/issues";
         Assert.assertEquals(expectedURL, navigate.getCurrentURL());
 
