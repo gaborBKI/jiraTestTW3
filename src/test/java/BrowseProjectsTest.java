@@ -10,9 +10,9 @@ public class BrowseProjectsTest {
     /* Environment variables used in this test:
 
     JIRAUSER = username
-    PASSWORD = password
-    driverTYpe = can be firefox or chrome
-    ALL_PROJECTS_URL = https://jira.codecool.codecanvas.hu/secure/BrowseProjects.jspa?selectedCategory\=all&selectedProjectType\=all
+    PASSWROD = password
+    driverType = can be firefox or chrome
+    ALL_PROJECTS_URL = https://jira.codecool.codecanvas.hu/secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all
 
      */
 

@@ -28,4 +28,10 @@ public class Util {
     public WebElement findElementByText(String text){
         return driver.findElement(By.linkText(text));
     }
+
+    public void waitForElementClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
 }
