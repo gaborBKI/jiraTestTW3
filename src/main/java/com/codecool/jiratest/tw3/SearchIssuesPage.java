@@ -25,7 +25,7 @@ public class SearchIssuesPage {
     }
 
     public String verifyIssueText(String searchText) {
-        util.waitFor(issueName, searchText, 6);
+        util.waitFor(issueName, searchText);
         return issueName.getText();
     }
 
