@@ -40,12 +40,12 @@ public class EditIssueTest {
     public void inlineEditing() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
         String originalSummary = objEditProjectPage.getSummaryText();
-        System.out.println(originalSummary);
+        System.out.println(originalSummary);        //Todo: Need to delete this
         String newSummary = "Coala Task 3";
-        objEditProjectPage.editSummaryField(newSummary);
+        objEditProjectPage.editSummaryField(newSummary);    // Maybe change to "updateSummaryField"
         String modifiedSummary = objEditProjectPage.getSummaryText();
         Assert.assertEquals(newSummary, modifiedSummary);
-        objEditProjectPage.editSummaryField(originalSummary);
+        objEditProjectPage.editSummaryField(originalSummary);// Maybe change to "revertToOriginal"
     }
 
     @AfterAll

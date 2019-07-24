@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BrowserFactory {
     private static WebDriver webDriver;
 
-    public static WebDriver loadPage(String browserName, String url){       //todo: browserName could be an environment variable
+    public static WebDriver loadPage(String browserName, String url){
 
         if(browserName.equals("firefox")){
             webDriver= new FirefoxDriver();

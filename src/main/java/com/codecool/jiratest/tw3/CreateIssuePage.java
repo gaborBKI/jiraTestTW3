@@ -27,7 +27,7 @@ public class CreateIssuePage {
         this.util = new Util(driver);
     }
 
-    public void sendMessageToProjectBox(String message){
+    public void sendMessageToProjectField(String message){
         util.waitFor(projectBox, 6);
         projectBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         projectBox.sendKeys(Keys.BACK_SPACE);
@@ -35,14 +35,14 @@ public class CreateIssuePage {
         projectBox.sendKeys(Keys.ENTER);
     }
 
-    public void sendMessageToIssueBox(String message){
+    public void sendMessageToIssueField(String message){
         util.waitForElementClickable(issueBox);
         issueBox.click();
         issueBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         issueBox.sendKeys(Keys.BACK_SPACE);
     }
 
-    public boolean FindValueInIssueValues(String value){
+    public boolean findIssueBetweenIssues(String value){
         util.waitForElementClickable(dropDownTrigger);
         dropDownTrigger.click();
         for (WebElement issueTypeSuggestion : issueTypeSuggestions) {
@@ -56,7 +56,7 @@ public class CreateIssuePage {
         cancelButton.click();
     }
 
-    public boolean projectError(){
+    public boolean projectErrorOccured(){
         try {
             util.waitFor(projectErroMessage, 6);
         } catch (TimeoutException e){

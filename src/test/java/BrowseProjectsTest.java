@@ -40,7 +40,7 @@ public class BrowseProjectsTest {
 
     @Test
     public void projectListAppearsTest() {
-        browseProjectsPage.getToProjectsFromDropdown();
+        browseProjectsPage.getToProjectsFromDropdown(); //todo:Could be broken down for smaller keywords
         Assert.assertTrue(browseProjectsPage.verifyProjectListAppears());
     }
 

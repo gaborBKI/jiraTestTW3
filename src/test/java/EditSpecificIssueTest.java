@@ -37,26 +37,29 @@ public class EditSpecificIssueTest {
 
     @Test
     public void deleteRequiredFieldsTest() {
-        editIssueSpecificPage.deleteRequiredFields();
+        editIssueSpecificPage.deleteRequiredFields();       //todo: Need to refactor this into smaller elements
         Assert.assertNotNull(editIssueSpecificPage.returnError());
         Assert.assertNotNull(editIssueSpecificPage.returnIssueType());
     }
 
     @Test
     public void deleteIssueSummaryTest() {
-        editIssueSpecificPage.deleteIssueSummary();
+        editIssueSpecificPage.deleteIssueSummary(); // todo: Need to refactor this into smaller elements
         Assert.assertNotNull(editIssueSpecificPage.returnError());
     }
 
     @Test
     public void editDescriptionTest() {
-        editIssueSpecificPage.editDescription();
+        editIssueSpecificPage.editDescription();    //todo: Need to refactor this into smaller elements, or rename it
         Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
+        // todo: No magic strings into the test
     }
 
     @Test
     public void editIssueTypeTest() {
         editIssueSpecificPage.editIssueType();
         Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
+        //todo: No magic strings into the test
+
     }
 }
