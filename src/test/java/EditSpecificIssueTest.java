@@ -57,6 +57,6 @@ public class EditSpecificIssueTest {
     @Test
     public void editIssueTypeTest() {
         editIssueSpecificPage.editIssueType();
-        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
+        Assert.assertEquals("Task", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
     }
 }
