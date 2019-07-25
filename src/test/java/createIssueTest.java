@@ -1,4 +1,8 @@
-import com.codecool.jiratest.tw3.*;
+import com.codecool.jiratest.tw3.pages.CreateIssuePage;
+import com.codecool.jiratest.tw3.pages.DashboardPage;
+import com.codecool.jiratest.tw3.pages.LoginPage;
+import com.codecool.jiratest.tw3.utility.BrowserFactory;
+import com.codecool.jiratest.tw3.utility.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -18,11 +22,12 @@ public class createIssueTest {
 
     @BeforeAll
     public static void init(){
-        driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+        driver = BrowserFactory.loadPage(System.getenv("driverType"));
         createIssuePage = PageFactory.initElements(driver, CreateIssuePage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         navigate = new Navigate(driver);
+        navigate.toPage(System.getenv("LOGIN_PAGE"));
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 

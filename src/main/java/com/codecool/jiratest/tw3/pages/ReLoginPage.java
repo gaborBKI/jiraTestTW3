@@ -1,5 +1,6 @@
-package com.codecool.jiratest.tw3;
+package com.codecool.jiratest.tw3.pages;
 
+import com.codecool.jiratest.tw3.utility.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

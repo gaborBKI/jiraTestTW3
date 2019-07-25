@@ -1,4 +1,4 @@
-package com.codecool.jiratest.tw3;
+package com.codecool.jiratest.tw3.utility;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
