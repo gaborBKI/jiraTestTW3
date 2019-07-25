@@ -5,6 +5,8 @@ import com.codecool.jiratest.tw3.LoginPage;
 import com.codecool.jiratest.tw3.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -53,13 +55,16 @@ public class EditSpecificIssueTest {
         editIssueSpecificPage.navigateToDescriptionBox();
         String originalDescription = editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue());
         editIssueSpecificPage.editDescriptionBox(originalDescription + "1");
-        Assert.assertEquals(originalDescription + "1", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
-        editIssueSpecificPage.editDescriptionBox(originalDescription);
+        Assert.assertEquals(originalDescription, editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
     }
 
     @Test
     public void editIssueTypeTest() {
-        editIssueSpecificPage.editIssueType("Task");
-        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
+        editIssueSpecificPage.goToEditIssueType();
+        String originalIssueType = editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText());
+        editIssueSpecificPage.setIssueType("Task");
+        String newIssueType = editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText());
+        Assert.assertEquals("Task", newIssueType);
+        editIssueSpecificPage.setPreviousIssueType(originalIssueType);
     }
 }

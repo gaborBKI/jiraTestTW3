@@ -1,5 +1,6 @@
 package com.codecool.jiratest.tw3;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,7 @@ public class EditIssueSpecificPage {
     @FindBy(id= "edit-issue-submit") private WebElement editIssueSubmit;
     @FindBy(id= "issuetype-field") private WebElement issueTypeField;
     @FindBy(id= "type-val") private WebElement issueTypeText;
+    @FindBy(xpath = "//*[@id=\"issuetype-form\"]/div[2]/button[1]") private WebElement issueTypeSubmit;
     @FindBy(xpath= "//*[@id=\"issuetype-field\"]") private WebElement issueTypeDropdown;
     @FindBy(className= "error") private WebElement errorClass;
     @FindBy(xpath = "//*[@id=\"edit-issue-dialog\"]/div[2]/div[1]/div/form") private WebElement descriptionForm;
@@ -86,7 +88,6 @@ public class EditIssueSpecificPage {
 
     public void navigateToDescriptionBox() {
         click(editIssueButton);
-        waitForElement(descriptionForm);
         waitForElement(descriptionField);
         click(descriptionField);
         click(descriptionBox);
@@ -98,12 +99,23 @@ public class EditIssueSpecificPage {
         click(editIssueSubmit);
     }
 
-    public void editIssueType(String newIssueType) {
+    public void goToEditIssueType() {
         waitForElement(editIssueButton);
+        click(editIssueButton);
         waitForElement(descriptionForm);
         waitForElement(issueTypeField);
+    }
+
+    public void setIssueType(String issueType) {
         click(issueTypeDropdown);
-        writeText(issueTypeDropdown, newIssueType);
+        writeText(issueTypeDropdown, issueType);
         click(editIssueSubmit);
+    }
+
+    public void setPreviousIssueType(String issueType) {
+        util.waitForElementClickable(issueTypeText);
+        click(issueTypeText);
+        writeText(issueTypeField, issueType);
+        issueTypeSubmit.sendKeys(Keys.RETURN);
     }
 }
