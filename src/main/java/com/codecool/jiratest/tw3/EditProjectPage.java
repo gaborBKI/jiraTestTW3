@@ -57,11 +57,11 @@ public class EditProjectPage {
 
 
     public void deleteThisIssue() {
-        util.waitFor(moreButton);
+        util.waitFor(moreButton, 10);
         moreButton.click();
-        util.waitFor(deleteButton);
+        util.waitFor(deleteButton, 10);
         deleteButton.click();
-        util.waitFor(confirmDeleteButton);
+        util.waitFor(confirmDeleteButton, 10);
         confirmDeleteButton.click();
     }
 }

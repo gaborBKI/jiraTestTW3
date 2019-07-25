@@ -54,7 +54,7 @@ public class DashboardPage {
     }
 
     public void catchCreatePopUpWindow() {
-        util.waitFor(newIssueMessageLink);
+        util.waitFor(newIssueMessageLink, 10);
         newIssueMessageLink.click();
     }
 
