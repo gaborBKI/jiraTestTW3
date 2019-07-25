@@ -1,13 +1,8 @@
-import com.codecool.jiratest.tw3.pages.CreateIssuePage;
-import com.codecool.jiratest.tw3.pages.DashboardPage;
-import com.codecool.jiratest.tw3.pages.EditProjectPage;
-import com.codecool.jiratest.tw3.pages.LoginPage;
+import com.codecool.jiratest.tw3.pages.*;
 import com.codecool.jiratest.tw3.utility.BrowserFactory;
 import com.codecool.jiratest.tw3.utility.Navigate;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
@@ -19,19 +14,20 @@ public class EditIssueTest {
     private static Navigate navigate;
     private static LoginPage loginPage;
     private static EditProjectPage objEditProjectPage;
-    private static DashboardPage objDashboardPage;
+    private static DashboardPage dashboardPage;
     private static CreateIssuePage objCreateIssuePage;
 
-    @BeforeAll
-    public static void setUp(){
+    @BeforeEach
+    public void init() {
         driver = BrowserFactory.loadPage(System.getenv("driverType"));
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         objEditProjectPage = PageFactory.initElements(driver, EditProjectPage.class);
-        objDashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         objCreateIssuePage = PageFactory.initElements(driver, CreateIssuePage.class);
         navigate = new Navigate(driver);
         navigate.toPage(System.getenv("LOGIN_PAGE"));
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+        dashboardPage.waitForDashboard();
     }
 
     @ParameterizedTest
@@ -67,8 +63,35 @@ public class EditIssueTest {
     }
      */
 
-    @AfterAll
-    public static void tearDown(){
+    @Test
+    public void deleteRequiredFieldsTest() {
+        navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
+        objEditProjectPage.waitForEditButton();
+        objEditProjectPage.deleteRequiredFields();
+        Assert.assertNotNull(objEditProjectPage.returnError());
+        Assert.assertNotNull(objEditProjectPage.returnIssueType());
+    }
+
+    @Test
+    public void deleteIssueSummaryTest() {
+        navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
+        objEditProjectPage.waitForEditButton();
+        objEditProjectPage.deleteIssueSummary();
+        Assert.assertNotNull(objEditProjectPage.returnError());
+    }
+
+    @Test
+    public void editDescriptionTest() {
+        navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
+        objEditProjectPage.waitForEditButton();
+        objEditProjectPage.navigateToDescriptionBox();
+        String originalDescription = objEditProjectPage.returnText(objEditProjectPage.returnDescriptionValue());
+        objEditProjectPage.editDescriptionBox(originalDescription + "1");
+        Assert.assertEquals(originalDescription, objEditProjectPage.returnText(objEditProjectPage.returnDescriptionValue()));
+    }
+
+    @AfterEach
+    public void tearDown(){
         driver.close();
     }
 
