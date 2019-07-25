@@ -30,7 +30,6 @@ public class BrowseIssuesTest {
         driver.close();
     }
 
-    @Order(1)
     @Test
     public void searchForIssuesTest() {
         if (dashBoardPage.verifyLogin()) {
@@ -39,8 +38,7 @@ public class BrowseIssuesTest {
         searchIssuesPage.searchIssue("none");
         Assert.assertEquals("none", searchIssuesPage.verifyIssueText("none"));
     }
-
-    @Order(2)
+    
     @ParameterizedTest
     @CsvFileSource(resources = {"/coalaurl.csv", "/jetiurl.csv", "/toucanurl.csv"}, delimiter = '\n')
     public void projectsContainThreeIssues(String url){
