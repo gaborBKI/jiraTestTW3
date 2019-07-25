@@ -37,29 +37,29 @@ public class EditSpecificIssueTest {
 
     @Test
     public void deleteRequiredFieldsTest() {
-        editIssueSpecificPage.deleteRequiredFields();       //todo: Need to refactor this into smaller elements
+        editIssueSpecificPage.deleteRequiredFields();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
         Assert.assertNotNull(editIssueSpecificPage.returnIssueType());
     }
 
     @Test
     public void deleteIssueSummaryTest() {
-        editIssueSpecificPage.deleteIssueSummary(); // todo: Need to refactor this into smaller elements
+        editIssueSpecificPage.deleteIssueSummary();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
     }
 
     @Test
     public void editDescriptionTest() {
-        editIssueSpecificPage.editDescription();    //todo: Need to refactor this into smaller elements, or rename it
-        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
-        // todo: No magic strings into the test
+        editIssueSpecificPage.navigateToDescriptionBox();
+        String originalDescription = editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue());
+        editIssueSpecificPage.editDescriptionBox(originalDescription + "1");
+        Assert.assertEquals(originalDescription + "1", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
+        editIssueSpecificPage.editDescriptionBox(originalDescription);
     }
 
     @Test
     public void editIssueTypeTest() {
-        editIssueSpecificPage.editIssueType();
+        editIssueSpecificPage.editIssueType("Task");
         Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
-        //todo: No magic strings into the test
-
     }
 }
