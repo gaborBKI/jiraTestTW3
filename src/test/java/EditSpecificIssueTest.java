@@ -5,6 +5,8 @@ import com.codecool.jiratest.tw3.LoginPage;
 import com.codecool.jiratest.tw3.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -37,29 +39,33 @@ public class EditSpecificIssueTest {
 
     @Test
     public void deleteRequiredFieldsTest() {
-        editIssueSpecificPage.deleteRequiredFields();       //todo: Need to refactor this into smaller elements
+        editIssueSpecificPage.deleteRequiredFields();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
         Assert.assertNotNull(editIssueSpecificPage.returnIssueType());
     }
 
     @Test
     public void deleteIssueSummaryTest() {
-        editIssueSpecificPage.deleteIssueSummary(); // todo: Need to refactor this into smaller elements
+        editIssueSpecificPage.deleteIssueSummary();
         Assert.assertNotNull(editIssueSpecificPage.returnError());
     }
 
     @Test
     public void editDescriptionTest() {
-        editIssueSpecificPage.editDescription();    //todo: Need to refactor this into smaller elements, or rename it
-        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
-        // todo: No magic strings into the test
+        editIssueSpecificPage.navigateToDescriptionBox();
+        String originalDescription = editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue());
+        editIssueSpecificPage.editDescriptionBox(originalDescription + "1");
+        Assert.assertEquals(originalDescription, editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
     }
 
-    @Test
+    /*@Test
     public void editIssueTypeTest() {
-        editIssueSpecificPage.editIssueType();
-        Assert.assertEquals("Test", editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText()));
-        //todo: No magic strings into the test
-
+        editIssueSpecificPage.goToEditIssueType();
+        String originalIssueType = editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText());
+        editIssueSpecificPage.setIssueType("Task");
+        String newIssueType = editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText());
+        Assert.assertEquals("Task", newIssueType);
+        editIssueSpecificPage.setPreviousIssueType(originalIssueType);
     }
+     */
 }
