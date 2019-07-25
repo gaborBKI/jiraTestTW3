@@ -24,8 +24,8 @@ public class BrowseProjectsTest {
     private static AllProjectsPage allProjectsPage;
 
     @BeforeAll
-    public static void init(){
-        driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+    public static void init() {
+        driver = BrowserFactory.loadPage(System.getenv("driverType"), "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         browseProjectsPage = PageFactory.initElements(driver, BrowseProjectsPage.class);
         allProjectsPage = PageFactory.initElements(driver, AllProjectsPage.class);
@@ -34,23 +34,22 @@ public class BrowseProjectsTest {
     }
 
     @AfterAll
-    public static void tearDown(){
+    public static void tearDown() {
         driver.close();
     }
 
     @Test
     public void projectListAppearsTest() {
-        browseProjectsPage.getToProjectsFromDropdown(); //todo:Could be broken down for smaller keywords
+        browseProjectsPage.getToProjectsFromDropdown();
         Assert.assertTrue(browseProjectsPage.verifyProjectListAppears());
     }
 
     @Test
-    public void projectPageValidTest(){
+    public void projectPageValidTest() {
         navigate.toPage(System.getenv("ALL_PROJECTS_URL"));
         allProjectsPage.clickOnValidProject(projectToTest);
-        String expectedURL ="https://jira.codecool.codecanvas.hu/projects/MTP/issues";
+        String expectedURL = "https://jira.codecool.codecanvas.hu/projects/MTP/issues";
         Assert.assertEquals(expectedURL, navigate.getCurrentURL());
-
     }
 
 }

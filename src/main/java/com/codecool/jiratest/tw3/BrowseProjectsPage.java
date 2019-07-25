@@ -18,7 +18,7 @@ public class BrowseProjectsPage {
     }
 
     public void getToProjectsFromDropdown(){
-        util.waitFor(navBar, 6);
+        util.waitFor(navBar, 8);
         projectsButton.click();
         util.waitFor(viewAllProjectsButton, 6);
         viewAllProjectsButton.click();
