@@ -24,7 +24,7 @@ public class Util {
     }
 
     public void waitFor(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 4);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 

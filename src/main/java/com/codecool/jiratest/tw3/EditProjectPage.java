@@ -21,6 +21,13 @@ public class EditProjectPage {
     @FindBy(id = "summary")
     private WebElement editableSummaryField;
 
+    @FindBy(xpath = "//a[@id='opsbar-operations_more']/child::span[@class='dropdown-text']")
+    private WebElement moreButton;
+    @FindBy(xpath = "//*[@id='delete-issue']//descendant::span[@class='trigger-label']")
+    private WebElement deleteButton;
+    @FindBy(id = "delete-issue-submit")
+    private WebElement confirmDeleteButton;
+
     public EditProjectPage(WebDriver driver) {
         util = new Util(driver);
     }
@@ -46,5 +53,15 @@ public class EditProjectPage {
     public String getSummaryText() {
         util.waitForElementClickable(summaryHeader);
         return summaryHeader.getText();
+    }
+
+
+    public void deleteThisIssue() {
+        util.waitFor(moreButton);
+        moreButton.click();
+        util.waitFor(deleteButton);
+        deleteButton.click();
+        util.waitFor(confirmDeleteButton);
+        confirmDeleteButton.click();
     }
 }

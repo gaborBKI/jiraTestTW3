@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.security.Key;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class CreateIssuePage {
     private Util util;
@@ -24,6 +22,9 @@ public class CreateIssuePage {
     private WebElement cancelButton;
     @FindBy(xpath = "//*[@id='project-suggestions']/div[@tabindex='-1']/li[@class='no-suggestions']")
     private WebElement projectErroMessage;
+    //@FindBy(id = "summary")
+    @FindBy(id="summary")
+    private WebElement summaryFieldInPopup;
 
     public CreateIssuePage(WebDriver driver) {
         this.util = new Util(driver);
@@ -42,6 +43,13 @@ public class CreateIssuePage {
         issueBox.click();
         issueBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         issueBox.sendKeys(Keys.BACK_SPACE);
+    }
+
+    public void fillSummaryFieldWhenCreatingIssue(String summaryName) {
+        util.waitForElementClickable(summaryFieldInPopup);
+        summaryFieldInPopup.click();
+        summaryFieldInPopup.sendKeys(summaryName);
+        summaryFieldInPopup.sendKeys(Keys.RETURN);
     }
 
     public boolean FindValueInIssueValues(String value){

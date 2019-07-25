@@ -13,6 +13,7 @@ public class DashboardPage {
     @FindBy(id = "header-details-user-fullname") private WebElement userButton;
     @FindBy(id = "log_out") private WebElement logOutButton;
     @FindBy(id = "login-container") private WebElement logInContainer;
+    @FindBy(xpath = "//div[@id=\"aui-flag-container\"]//descendant::a[@class=\"issue-created-key issue-link\"]") private WebElement newIssueMessageLink;
 
     public DashboardPage(WebDriver driver) {
         util = new Util(driver);
@@ -28,7 +29,7 @@ public class DashboardPage {
     }
 
     public void clickToCreateIssue(){
-        util.waitFor(createButton);
+        util.waitForElementClickable(createButton);
         createButton.click();
     }
 
@@ -50,6 +51,11 @@ public class DashboardPage {
             return null;
         }
         return logInContainer;
+    }
+
+    public void catchCreatePopUpWindow() {
+        util.waitFor(newIssueMessageLink);
+        newIssueMessageLink.click();
     }
 
 }
