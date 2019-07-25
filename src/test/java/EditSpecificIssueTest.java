@@ -58,7 +58,7 @@ public class EditSpecificIssueTest {
         Assert.assertEquals(originalDescription, editIssueSpecificPage.returnText(editIssueSpecificPage.returnDescriptionValue()));
     }
 
-    @Test
+    /*@Test
     public void editIssueTypeTest() {
         editIssueSpecificPage.goToEditIssueType();
         String originalIssueType = editIssueSpecificPage.returnText(editIssueSpecificPage.returnIssueTypeText());
@@ -67,4 +67,5 @@ public class EditSpecificIssueTest {
         Assert.assertEquals("Task", newIssueType);
         editIssueSpecificPage.setPreviousIssueType(originalIssueType);
     }
+     */
 }
