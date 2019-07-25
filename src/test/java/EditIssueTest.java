@@ -41,12 +41,12 @@ public class EditIssueTest {
     @Test
     public void inlineEditing() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
-        String originalSummary = objEditProjectPage.getSummaryText();
-        String newSummary = originalSummary + " --- test ---";
-        objEditProjectPage.editSummaryField(newSummary);
-        String modifiedSummary = objEditProjectPage.getSummaryText();
-        Assert.assertEquals(newSummary, modifiedSummary);
-        objEditProjectPage.editSummaryField(originalSummary);
+        String originalIssueName = objEditProjectPage.getSummaryText();
+        String newIssueName = originalIssueName + " --- test ---";
+        objEditProjectPage.editSummaryField(newIssueName);
+        String modifiedIssueName = objEditProjectPage.getSummaryText();
+        Assert.assertEquals(newIssueName, modifiedIssueName);
+        objEditProjectPage.editSummaryField(originalIssueName);
     }
 
     /*
