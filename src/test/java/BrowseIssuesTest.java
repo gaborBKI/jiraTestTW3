@@ -28,12 +28,12 @@ public class BrowseIssuesTest {
     @AfterAll
     public static void tearDown(){
         driver.close();
-    }   //todo: should be "driver.quit()"
+    }
 
     @Order(1)
     @Test
     public void searchForIssuesTest() {
-        if (dashBoardPage.verifyLogin()) {      //todo: Why do you need to verify login for this test?
+        if (dashBoardPage.verifyLogin()) {
             navigate.toPage("https://jira.codecool.codecanvas.hu/issues");
         }
         searchIssuesPage.searchIssue("none");
