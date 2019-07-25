@@ -1,4 +1,8 @@
-import com.codecool.jiratest.tw3.*;
+import com.codecool.jiratest.tw3.pages.DashboardPage;
+import com.codecool.jiratest.tw3.pages.LoginPage;
+import com.codecool.jiratest.tw3.pages.SearchIssuesPage;
+import com.codecool.jiratest.tw3.utility.BrowserFactory;
+import com.codecool.jiratest.tw3.utility.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,11 +21,12 @@ public class BrowseIssuesTest {
 
     @BeforeAll
     public static void init(){
-        driver = BrowserFactory.loadPage(System.getenv("driverType"),"https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+        driver = BrowserFactory.loadPage(System.getenv("driverType"));
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
         searchIssuesPage = PageFactory.initElements(driver, SearchIssuesPage.class);
         navigate = new Navigate(driver);
+        navigate.toPage(System.getenv("LOGIN_PAGE"));
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 

@@ -1,5 +1,6 @@
-package com.codecool.jiratest.tw3;
+package com.codecool.jiratest.tw3.pages;
 
+import com.codecool.jiratest.tw3.utility.Util;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;

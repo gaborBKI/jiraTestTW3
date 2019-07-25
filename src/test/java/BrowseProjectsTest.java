@@ -1,4 +1,9 @@
-import com.codecool.jiratest.tw3.*;
+import com.codecool.jiratest.tw3.pages.AllProjectsPage;
+import com.codecool.jiratest.tw3.pages.BrowseProjectsPage;
+import com.codecool.jiratest.tw3.pages.DashboardPage;
+import com.codecool.jiratest.tw3.pages.LoginPage;
+import com.codecool.jiratest.tw3.utility.BrowserFactory;
+import com.codecool.jiratest.tw3.utility.Navigate;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +31,7 @@ public class BrowseProjectsTest {
 
     @BeforeAll
     public static void init() {
-        driver = BrowserFactory.loadPage(System.getenv("driverType"), "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+        driver = BrowserFactory.loadPage(System.getenv("driverType"));
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         browseProjectsPage = PageFactory.initElements(driver, BrowseProjectsPage.class);
         allProjectsPage = PageFactory.initElements(driver, AllProjectsPage.class);
@@ -36,7 +41,7 @@ public class BrowseProjectsTest {
 
     @BeforeEach
     public void logIn(){
-        navigate.toPage("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
+        navigate.toPage(System.getenv("LOGIN_PAGE"));
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
     }
 
