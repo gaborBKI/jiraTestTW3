@@ -22,6 +22,7 @@ public class BrowseProjectsTest {
     private static LoginPage loginPage;
     private static BrowseProjectsPage browseProjectsPage;
     private static AllProjectsPage allProjectsPage;
+    private static DashboardPage dashboardPage;
 
     @BeforeAll
     public static void init() {
@@ -29,8 +30,19 @@ public class BrowseProjectsTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         browseProjectsPage = PageFactory.initElements(driver, BrowseProjectsPage.class);
         allProjectsPage = PageFactory.initElements(driver, AllProjectsPage.class);
+        dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         navigate = new Navigate(driver);
+    }
+
+    @BeforeEach
+    public void logIn(){
+        navigate.toPage("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
         loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+    }
+
+    @AfterEach
+    public void logOut(){
+        dashboardPage.logOut();
     }
 
     @AfterAll

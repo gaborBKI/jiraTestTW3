@@ -8,26 +8,30 @@ import org.openqa.selenium.support.FindBy;
 public class BrowseProjectsPage {
 
     private Util util;
-    @FindBy(id = "browse_link") private WebElement projectsButton;
-    @FindBy(id = "project_view_all_link_lnk") private WebElement viewAllProjectsButton;
-    @FindBy(id = "projects") private WebElement projectList;
-    @FindBy(xpath = "//*[@id='header']/nav") private WebElement navBar;
+    @FindBy(id = "browse_link")
+    private WebElement projectsButton;
+    @FindBy(id = "project_view_all_link_lnk")
+    private WebElement viewAllProjectsButton;
+    @FindBy(id = "projects")
+    private WebElement projectList;
+    @FindBy(xpath = "//*[@id='header']/nav")
+    private WebElement navBar;
 
     public BrowseProjectsPage(WebDriver driver) {
         util = new Util(driver);
     }
 
-    public void getToProjectsFromDropdown(){
+    public void getToProjectsFromDropdown() {
         util.waitFor(navBar, 8);
         projectsButton.click();
         util.waitFor(viewAllProjectsButton, 6);
         viewAllProjectsButton.click();
     }
 
-    public boolean verifyProjectListAppears(){
+    public boolean verifyProjectListAppears() {
         try {
             util.waitFor(projectList, 6);
-        } catch (TimeoutException e){
+        } catch (TimeoutException e) {
             return false;
         }
         return true;
