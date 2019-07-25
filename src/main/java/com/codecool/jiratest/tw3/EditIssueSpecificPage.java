@@ -18,7 +18,7 @@ public class EditIssueSpecificPage {
     @FindBy(id= "type-val") private WebElement issueTypeText;
     @FindBy(xpath = "//*[@id=\"issuetype-form\"]/div[2]/button[1]") private WebElement issueTypeSubmit;
     @FindBy(xpath= "//*[@id=\"issuetype-field\"]") private WebElement issueTypeDropdown;
-    @FindBy(xpath= "//*[@id=\"summary-form\"]/div[1]/div/div") private WebElement errorClass;
+    @FindBy(className= "error") private WebElement errorClass;
     @FindBy(xpath = "//*[@id=\"edit-issue-dialog\"]/div[2]/div[1]/div/form") private WebElement descriptionForm;
     @FindBy(id= "aui-uid-1") private WebElement descriptionField;
     @FindBy(id= "description-wiki-edit") private WebElement descriptionBox;
