@@ -21,7 +21,7 @@ public class DashboardPage {
 
     public boolean verifyLogin(){
         try {
-            util.waitFor(userButton);
+            util.waitFor(userButton, 6);
         } catch (TimeoutException e){
             return false;
         }
@@ -29,24 +29,24 @@ public class DashboardPage {
     }
 
     public void clickToCreateIssue(){
-        util.waitForElementClickable(createButton);
+        util.waitFor(createButton, 6);
         createButton.click();
     }
 
     public void waitForDashboard() {
-        util.waitFor(userButton);
+        util.waitFor(userButton, 6);
     }
 
     public void logOut(){
-        util.waitFor(userButton);
+        util.waitFor(userButton, 6);
         userButton.click();
-        util.waitFor(logOutButton);
+        util.waitFor(logOutButton, 6);
         logOutButton.click();
     }
 
     public WebElement getLogInContainer(){
         try {
-            util.waitFor(logInContainer);
+            util.waitFor(logInContainer, 6);
         } catch (TimeoutException e){
             return null;
         }

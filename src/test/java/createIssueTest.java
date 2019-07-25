@@ -32,10 +32,10 @@ public class createIssueTest {
     @CsvFileSource(resources = "/createIssueRes.csv", numLinesToSkip = 1)
     public void testIssueTypesWithProjects(String projectName, String issueType){
         dashBoardPage.clickToCreateIssue();
-        createIssuePage.sendMessageToProjectBox(projectName);
-        Assert.assertFalse(createIssuePage.projectError());
-        createIssuePage.sendMessageToIssueBox(issueType);
-        boolean valueFound = createIssuePage.FindValueInIssueValues(issueType);
+        createIssuePage.sendMessageToProjectField(projectName);
+        Assert.assertFalse(createIssuePage.projectErrorOccured());
+        createIssuePage.sendMessageToIssueField(issueType);
+        boolean valueFound = createIssuePage.findIssueBetweenIssues(issueType);
         Assert.assertTrue(valueFound);
     }
 

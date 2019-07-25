@@ -30,29 +30,22 @@ public class CreateIssuePage {
         this.util = new Util(driver);
     }
 
-    public void sendMessageToProjectBox(String message){
-        util.waitFor(projectBox);
+    public void sendMessageToProjectField(String message){
+        util.waitFor(projectBox, 6);
         projectBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         projectBox.sendKeys(Keys.BACK_SPACE);
         projectBox.sendKeys(message );
         projectBox.sendKeys(Keys.ENTER);
     }
 
-    public void sendMessageToIssueBox(String message){
+    public void sendMessageToIssueField(String message){
         util.waitForElementClickable(issueBox);
         issueBox.click();
         issueBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         issueBox.sendKeys(Keys.BACK_SPACE);
     }
 
-    public void fillSummaryFieldWhenCreatingIssue(String summaryName) {
-        util.waitForElementClickable(summaryFieldInPopup);
-        summaryFieldInPopup.click();
-        summaryFieldInPopup.sendKeys(summaryName);
-        summaryFieldInPopup.sendKeys(Keys.RETURN);
-    }
-
-    public boolean FindValueInIssueValues(String value){
+    public boolean findIssueBetweenIssues(String value){
         util.waitForElementClickable(dropDownTrigger);
         dropDownTrigger.click();
         for (WebElement issueTypeSuggestion : issueTypeSuggestions) {
@@ -62,13 +55,20 @@ public class CreateIssuePage {
         return false;
     }
 
+    public void fillSummaryFieldWhenCreatingIssue(String summaryName) {
+        util.waitForElementClickable(summaryFieldInPopup);
+        summaryFieldInPopup.click();
+        summaryFieldInPopup.sendKeys(summaryName);
+        summaryFieldInPopup.sendKeys(Keys.RETURN);
+    }
+
     public void clickToCancel(){
         cancelButton.click();
     }
 
-    public boolean projectError(){
+    public boolean projectErrorOccured(){
         try {
-            util.waitFor(projectErroMessage);
+            util.waitFor(projectErroMessage, 6);
         } catch (TimeoutException e){
             return false;
         }

@@ -33,19 +33,19 @@ public class EditProjectPage {
     }
 
     public void clickEdit() {
-        util.waitFor(editButton);
+        util.waitFor(editButton, 6);
         editButton.click();
     }
 
     public boolean verifyEditButton(){
-        util.waitFor(editDialogBox);
+        util.waitFor(editDialogBox, 6);
         return editDialogBox.isDisplayed();
     }
 
     public void editSummaryField(String newSummary) {
         util.waitForElementClickable(summaryHeader);
         summaryHeader.click();
-        util.waitFor(editableSummaryField);
+        util.waitFor(editableSummaryField, 6);
         editableSummaryField.sendKeys(newSummary);
         editableSummaryField.sendKeys(Keys.RETURN);
     }
