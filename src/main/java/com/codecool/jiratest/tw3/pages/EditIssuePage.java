@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EditProjectPage {
+public class EditIssuePage {
 
     private Util util;
     WebDriverWait wait;
@@ -28,7 +28,6 @@ public class EditProjectPage {
     private WebElement deleteButton;
     @FindBy(id = "delete-issue-submit")
     private WebElement confirmDeleteButton;
-
     @FindBy(id= "summary-val") private WebElement summaryValue;
     @FindBy(id= "summary-form") private WebElement summaryTextField;
     @FindBy(id= "summary") private WebElement summaryText;
@@ -44,7 +43,7 @@ public class EditProjectPage {
     @FindBy(id= "description-val") private WebElement descriptionValue;
 
 
-    public EditProjectPage(WebDriver driver) {
+    public EditIssuePage(WebDriver driver) {
         util = new Util(driver);
     }
 
@@ -82,7 +81,7 @@ public class EditProjectPage {
 
     public void waitForEditButton() {
         util.waitFor(editIssueButton, 6);
-    }
+    }   //Convert for static import
 
     public void waitForElement(WebElement element) {
         util.waitFor(element, 6);
@@ -119,6 +118,7 @@ public class EditProjectPage {
     }
 
     public void deleteRequiredFields() {
+        //Need a wait for editIssueButton
         click(editIssueButton);
         waitForElement(editIssueDialog);
         click(summary);

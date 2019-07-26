@@ -17,7 +17,7 @@ public class LoginTest {
 
     @BeforeAll
     public static void init(){
-        driver = BrowserFactory.loadPage(System.getenv("driverType"));
+        driver = BrowserFactory.loadPage(System.getenv("driverType"));  //basepage for this
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);
         navigate = new Navigate(driver);
@@ -46,7 +46,7 @@ public class LoginTest {
     @Order(3)
     @Test
     public void happyPathTest(){
-        loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+        loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));  //global config class
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
 

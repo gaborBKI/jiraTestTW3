@@ -13,7 +13,7 @@ public class EditIssueTest {
     private static WebDriver driver;
     private static Navigate navigate;
     private static LoginPage loginPage;
-    private static EditProjectPage objEditProjectPage;
+    private static EditIssuePage objEditIssuePage;
     private static DashboardPage dashboardPage;
     private static CreateIssuePage objCreateIssuePage;
 
@@ -21,7 +21,7 @@ public class EditIssueTest {
     public void init() {
         driver = BrowserFactory.loadPage(System.getenv("driverType"));
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        objEditProjectPage = PageFactory.initElements(driver, EditProjectPage.class);
+        objEditIssuePage = PageFactory.initElements(driver, EditIssuePage.class);
         dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         objCreateIssuePage = PageFactory.initElements(driver, CreateIssuePage.class);
         navigate = new Navigate(driver);
@@ -30,23 +30,23 @@ public class EditIssueTest {
         dashboardPage.waitForDashboard();
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/urlList.csv", numLinesToSkip = 1)
+    @ParameterizedTest  //csv file issue ids only
+    @CsvFileSource(resources = "/urlList.csv", numLinesToSkip = 1)  //base url required
     public void editPageOpensTest(String url) {
         driver.navigate().to(url);
-        objEditProjectPage.clickEdit();
-        Assert.assertTrue(objEditProjectPage.verifyEditButton());
+        objEditIssuePage.clickEdit();
+        Assert.assertTrue(objEditIssuePage.verifyEditButton());   // verify if button exists
     }
 
     @Test
     public void inlineEditing() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/COALA-1");
-        String originalIssueName = objEditProjectPage.getSummaryText();
+        String originalIssueName = objEditIssuePage.getSummaryText();
         String newIssueName = originalIssueName + " --- test ---";
-        objEditProjectPage.editSummaryField(newIssueName);
-        String modifiedIssueName = objEditProjectPage.getSummaryText();
+        objEditIssuePage.editSummaryField(newIssueName);
+        String modifiedIssueName = objEditIssuePage.getSummaryText();
         Assert.assertEquals(newIssueName, modifiedIssueName);
-        objEditProjectPage.editSummaryField(originalIssueName);
+        objEditIssuePage.editSummaryField(originalIssueName);
     }
 
     /*
@@ -56,38 +56,39 @@ public class EditIssueTest {
         objCreateIssuePage.fillSummaryFieldWhenCreatingIssue("My test issue");
         objDashboardPage.catchCreatePopUpWindow();
         String newSummary = "NEW TEST NAME";
-        objEditProjectPage.editSummaryField(newSummary);
-        String modifiedSummary = objEditProjectPage.getSummaryText();
+        objEditIssuePage.editSummaryField(newSummary);
+        String modifiedSummary = objEditIssuePage.getSummaryText();
         Assert.assertEquals(newSummary, modifiedSummary);
-        objEditProjectPage.deleteThisIssue();
+        objEditIssuePage.deleteThisIssue();
     }
      */
 
     @Test
     public void deleteRequiredFieldsTest() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
-        objEditProjectPage.waitForEditButton();
-        objEditProjectPage.deleteRequiredFields();
-        Assert.assertNotNull(objEditProjectPage.returnError());
-        Assert.assertNotNull(objEditProjectPage.returnIssueType());
+        objEditIssuePage.waitForEditButton();
+        objEditIssuePage.deleteRequiredFields();
+        Assert.assertNotNull(objEditIssuePage.returnError());
+        Assert.assertNotNull(objEditIssuePage.returnIssueType());
     }
 
     @Test
     public void deleteIssueSummaryTest() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
-        objEditProjectPage.waitForEditButton();
-        objEditProjectPage.deleteIssueSummary();
-        Assert.assertNotNull(objEditProjectPage.returnError());
+        objEditIssuePage.waitForEditButton();
+        // Need to insert a wait for summary
+        objEditIssuePage.deleteIssueSummary();
+        Assert.assertNotNull(objEditIssuePage.returnError());
     }
 
     @Test
     public void editDescriptionTest() {
         navigate.toPage("https://jira.codecool.codecanvas.hu/browse/SAND-40");
-        objEditProjectPage.waitForEditButton();
-        objEditProjectPage.navigateToDescriptionBox();
-        String originalDescription = objEditProjectPage.returnText(objEditProjectPage.returnDescriptionValue());
-        objEditProjectPage.editDescriptionBox(originalDescription + "1");
-        Assert.assertEquals(originalDescription, objEditProjectPage.returnText(objEditProjectPage.returnDescriptionValue()));
+        objEditIssuePage.waitForEditButton();
+        objEditIssuePage.navigateToDescriptionBox();
+        String originalDescription = objEditIssuePage.returnText(objEditIssuePage.returnDescriptionValue());
+        objEditIssuePage.editDescriptionBox(originalDescription + "1");
+        Assert.assertEquals(originalDescription, objEditIssuePage.returnText(objEditIssuePage.returnDescriptionValue()));
     }
 
     @AfterEach

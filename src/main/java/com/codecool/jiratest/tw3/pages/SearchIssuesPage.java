@@ -31,6 +31,7 @@ public class SearchIssuesPage {
     }
 
     public WebElement verifyIssue() {
+        // Try catch needed
         util.waitFor(issueName, 6);
         return issueName;
     }

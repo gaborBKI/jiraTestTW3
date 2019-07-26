@@ -41,7 +41,7 @@ public class createIssueTest {
         Assert.assertFalse(createIssuePage.projectErrorOccured());
         createIssuePage.sendMessageToIssueField(issueType);
         boolean valueFound = createIssuePage.findIssueBetweenIssues(issueType);
-        Assert.assertTrue(valueFound);
+        Assert.assertTrue("message", valueFound);
     }
 
     @AfterEach

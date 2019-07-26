@@ -57,7 +57,7 @@ public class BrowseProjectsTest {
 
     @Test
     public void projectListAppearsTest() {
-        browseProjectsPage.getToProjectsFromDropdown();
+        browseProjectsPage.getToProjectsFromDropdown(); // get returns something, refactor it!
         Assert.assertTrue(browseProjectsPage.verifyProjectListAppears());
     }
 
