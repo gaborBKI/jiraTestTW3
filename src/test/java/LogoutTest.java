@@ -68,7 +68,7 @@ public class LogoutTest {
     @Order(3)
     @Test
     public void reLogInTest(){
-        reLoginPage.reLogIn(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+        reLoginPage.reLogIn(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
 
