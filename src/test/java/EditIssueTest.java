@@ -1,12 +1,21 @@
+import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.*;
 import com.codecool.jiratest.tw3.utility.BrowserFactory;
+import com.codecool.jiratest.tw3.utility.CapabilityLoader;
 import com.codecool.jiratest.tw3.utility.Navigate;
+import com.codecool.jiratest.tw3.utility.Util;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class EditIssueTest {
 
@@ -16,17 +25,22 @@ public class EditIssueTest {
     private static EditIssuePage objEditIssuePage;
     private static DashboardPage dashboardPage;
     private static CreateIssuePage objCreateIssuePage;
+    private static String baseUrl;
+    private static String nodeURL;
 
     @BeforeEach
-    public void init() {
-        driver = BrowserFactory.loadPage(System.getenv("driverType"));
+    public void init() throws MalformedURLException {
+        DesiredCapabilities capability = CapabilityLoader.setCapability();
+        baseUrl = Util.getBaseURL();
+        nodeURL = "http://10.44.1.192:5566/wd/hub";
+        driver = new RemoteWebDriver(new URL(nodeURL), capability);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         objEditIssuePage = PageFactory.initElements(driver, EditIssuePage.class);
         dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         objCreateIssuePage = PageFactory.initElements(driver, CreateIssuePage.class);
         navigate = new Navigate(driver);
-        navigate.toPage(System.getenv("LOGIN_PAGE"));
-        loginPage.userLogin(System.getenv("JIRAUSER"), System.getenv("PASSWORD"));
+        navigate.toPage(baseUrl);
+        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
         dashboardPage.waitForDashboard();
     }
 
@@ -94,6 +108,11 @@ public class EditIssueTest {
     @AfterEach
     public void tearDown(){
         driver.close();
+    }
+
+    @AfterAll
+    public static void destroy(){
+        driver.quit();
     }
 
 }

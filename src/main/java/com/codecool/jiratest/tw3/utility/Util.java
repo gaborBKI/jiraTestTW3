@@ -13,10 +13,15 @@ public class Util {
     private final WebDriver driver;
 
     private WebDriverWait wait;
+    private static String baseURL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
 
     public Util(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
+    }
+
+    public static String getBaseURL() {
+        return baseURL;
     }
 
     public void generalWait(){
