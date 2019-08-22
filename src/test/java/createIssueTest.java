@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.CreateIssuePage;
 import com.codecool.jiratest.tw3.pages.DashboardPage;
 import com.codecool.jiratest.tw3.pages.LoginPage;
@@ -42,7 +41,7 @@ public class createIssueTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         navigate = new Navigate(driver);
         navigate.toPage(baseUrl);
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));
     }
 
     @ParameterizedTest

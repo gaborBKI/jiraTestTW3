@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.*;
 import com.codecool.jiratest.tw3.utility.BrowserFactory;
 import com.codecool.jiratest.tw3.utility.CapabilityLoader;
@@ -40,7 +39,7 @@ public class EditIssueTest {
         objCreateIssuePage = PageFactory.initElements(driver, CreateIssuePage.class);
         navigate = new Navigate(driver);
         navigate.toPage(baseUrl);
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));
         dashboardPage.waitForDashboard();
     }
 

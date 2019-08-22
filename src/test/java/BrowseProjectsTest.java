@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.AllProjectsPage;
 import com.codecool.jiratest.tw3.pages.BrowseProjectsPage;
 import com.codecool.jiratest.tw3.pages.DashboardPage;
@@ -56,7 +55,7 @@ public class BrowseProjectsTest {
     @BeforeEach
     public void logIn(){
         navigate.toPage(baseUrl);
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));
     }
 
     @AfterEach

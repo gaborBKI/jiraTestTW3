@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.DashboardPage;
 import com.codecool.jiratest.tw3.pages.LoginPage;
 import com.codecool.jiratest.tw3.utility.CapabilityLoader;
@@ -58,7 +57,7 @@ public class LoginTest {
     @Order(3)
     @Test
     public void happyPathTest(){
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());  //global config class
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));  //global config class
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
 

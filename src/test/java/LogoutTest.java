@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.DashboardPage;
 import com.codecool.jiratest.tw3.pages.LoginPage;
 import com.codecool.jiratest.tw3.pages.ReLoginPage;
@@ -43,7 +42,7 @@ public class LogoutTest {
     @BeforeEach
     public void navigate(){
         navigate.toPage(baseUrl);
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));
         dashBoardPage.logOut();
     }
 
@@ -68,7 +67,7 @@ public class LogoutTest {
     @Order(3)
     @Test
     public void reLogInTest(){
-        reLoginPage.reLogIn(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        reLoginPage.reLogIn(System.getProperty("userName"), System.getProperty("passWord"));
         Assert.assertTrue(dashBoardPage.verifyLogin());
     }
 

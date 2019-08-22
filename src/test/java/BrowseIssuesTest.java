@@ -1,4 +1,3 @@
-import com.codecool.jiratest.tw3.env.Creds;
 import com.codecool.jiratest.tw3.pages.DashboardPage;
 import com.codecool.jiratest.tw3.pages.LoginPage;
 import com.codecool.jiratest.tw3.pages.SearchIssuesPage;
@@ -41,7 +40,7 @@ public class BrowseIssuesTest {
         searchIssuesPage = PageFactory.initElements(driver, SearchIssuesPage.class);
         navigate = new Navigate(driver);
         navigate.toPage(baseUrl);
-        loginPage.userLogin(Creds.USERNAME.getValue(), Creds.PASSWORD.getValue());
+        loginPage.userLogin(System.getProperty("userName"), System.getProperty("passWord"));
     }
 
     @AfterAll
