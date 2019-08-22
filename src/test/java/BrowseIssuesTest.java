@@ -34,7 +34,7 @@ public class BrowseIssuesTest {
     public static void init() throws MalformedURLException {
         DesiredCapabilities capability = CapabilityLoader.setCapability();
         baseUrl = Util.getBaseURL();
-        nodeURL = "http://10.44.1.192:5566/wd/hub";
+        nodeURL = Util.getNodeURL();
         driver = new RemoteWebDriver(new URL(nodeURL), capability);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         dashBoardPage = PageFactory.initElements(driver, DashboardPage.class);

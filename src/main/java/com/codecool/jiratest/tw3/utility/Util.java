@@ -14,6 +14,7 @@ public class Util {
 
     private WebDriverWait wait;
     private static String baseURL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
+    private static String nodeURL = "http://10.44.1.192:5566/wd/hub";
 
     public Util(WebDriver driver) {
         this.driver = driver;
@@ -22,6 +23,10 @@ public class Util {
 
     public static String getBaseURL() {
         return baseURL;
+    }
+
+    public static String getNodeURL() {
+        return nodeURL;
     }
 
     public void generalWait(){
