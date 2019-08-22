@@ -14,7 +14,7 @@ public class Util {
 
     private WebDriverWait wait;
     private static String baseURL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
-    private static String nodeURL = "http://localhost:5566/wd/hub";
+    private static String nodeURL = "http://" + System.getProperty("node") + "/wd/hub";
 
     public Util(WebDriver driver) {
         this.driver = driver;
