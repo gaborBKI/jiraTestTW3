@@ -20,7 +20,7 @@ public class LoginPage {
     }
 
     public void userLogin(String username, String pass) {
-        util.waitFor(userName, 6);
+        util.waitFor(userName, 26);
         userName.sendKeys(username);
         password.sendKeys(pass);
         loginBtn.click();
@@ -28,7 +28,7 @@ public class LoginPage {
 
     public String verifyLoggedOutState(){
         try {
-            util.waitFor(userOptions, 6);
+            util.waitFor(userOptions, 26);
         } catch (TimeoutException e){
             return "Error";
         }
